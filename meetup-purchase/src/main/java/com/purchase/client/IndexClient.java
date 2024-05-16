@@ -1,0 +1,20 @@
+package com.purchase.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Auth Client.
+ *
+ * @author David Sapozhnik
+ */
+@FeignClient(value = "index-client", url = "localhost:8084/indexes")
+public interface IndexClient {
+
+    @GetMapping("/orders")
+    List<UUID> search(@RequestParam String search);
+}

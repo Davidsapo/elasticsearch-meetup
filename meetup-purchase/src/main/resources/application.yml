@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/meetup?currentSchema=${spring.jpa.properties.hibernate.default_schema}
+    username: meetup
+    password: meetup
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: purchase
+        dialect: ${spring.jpa.database-platform}
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+  profiles:
+    active: local
+  rabbitmq:
+    host: localhost
+    password: changeme
+    port: 5672
+    username: changeme
+  main:
+    allow-bean-definition-overriding: true
+
+#Server configuration
+server:
+  port: 8083
+  servlet:
+    context-path: /purchases
+
+auth:
+  queue:
+    name: index
+    exchange: system-event

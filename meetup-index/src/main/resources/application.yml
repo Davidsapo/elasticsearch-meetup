@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: local
+  rabbitmq:
+    host: localhost
+    password: changeme
+    port: 5672
+    username: changeme
+
+# Server Configuration
+server:
+  port: 8084
+  servlet:
+    context-path: /indexes
+
+index:
+  elasticsearch:
+    host: localhost
+    port: 9200
+
+  queue:
+    name: index
+    exchange: system-event
+
